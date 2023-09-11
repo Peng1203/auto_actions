@@ -19,8 +19,7 @@ var job = new CronJob(
   function () {
     const nowDate = dayjs().format('YYYY-MM-DD HH:mm:ss');
     fs.appendFile(txtFile, `${nowDate}\t`, (err, data) => {
-      console.log('err ------', err);
-      console.log('data ------', data);
+      if (err) return console.log('写入文件失败 ------', err);
 
       autoActionCommands(nowDate).forEach((command) => {
         exec(command, (err, stdout, stderr) => {
