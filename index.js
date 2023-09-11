@@ -9,7 +9,7 @@ const txtFile = path.join('./index.txt');
 //   console.log('data ------', data);
 //   console.log('121 ------', 121);
 // });
-const cronExpression = '* * */4 * * *';
+const cronExpression = '0 */4 * * * ';
 
 function autoActionCommands(commitMessage) {
   return ['git pull', 'git add .', `git commit -m "updata: auto action ${commitMessage}"`, 'git push'];
