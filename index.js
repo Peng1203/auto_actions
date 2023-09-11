@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const dayjs = require('dayjs');
+const { exec } = require('child_process');
 var CronJob = require('cron').CronJob;
 
 const txtFile = path.join('./index.txt');
@@ -9,12 +10,24 @@ const txtFile = path.join('./index.txt');
 //   console.log('121 ------', 121);
 // });
 
+function autoActionCommands(commitMessage) {
+  return ['git add .', `git commit -m "updata: auto action ${commitMessage}"`, 'git push'];
+}
+
 var job = new CronJob(
-  '* * */4 * * *',
+  '*/10 * * * * *',
   function () {
-    fs.appendFile(txtFile, `${dayjs().format('YYYY-MM-DD HH:mm:ss')}\t\t`, (err, data) => {
+    const nowDate = dayjs().format('YYYY-MM-DD HH:mm:ss');
+    fs.appendFile(txtFile, `${nowDate}\t`, (err, data) => {
       console.log('err ------', err);
       console.log('data ------', data);
+
+      autoActionCommands(nowDate).forEach((command) => {
+        exec(command, (err, stdout, stderr) => {
+          if (err) console.log('自动提交执行失败 ------', err, stderr);
+          else console.log('自动提交执行成功 ------', stdout);
+        });
+      });
     });
   },
   null,
