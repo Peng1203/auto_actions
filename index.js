@@ -9,13 +9,14 @@ const txtFile = path.join('./index.txt');
 //   console.log('data ------', data);
 //   console.log('121 ------', 121);
 // });
+const cronExpression = '* * */4 * * *';
 
 function autoActionCommands(commitMessage) {
-  return ['git add .', `git commit -m "updata: auto action ${commitMessage}"`, 'git push'];
+  return ['git pull', 'git add .', `git commit -m "updata: auto action ${commitMessage}"`, 'git push'];
 }
 
 var job = new CronJob(
-  '*/10 * * * * *',
+  cronExpression,
   function () {
     const nowDate = dayjs().format('YYYY-MM-DD HH:mm:ss');
     fs.appendFile(txtFile, `${nowDate}\t`, (err, data) => {
