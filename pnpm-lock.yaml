@@ -11,6 +11,9 @@ dependencies:
   cz-customizable:
     specifier: ^7.0.0
     version: 7.0.0
+  cz-git:
+    specifier: ^1.8.0
+    version: 1.8.0
   dayjs:
     specifier: ^1.11.9
     version: 1.11.9
@@ -118,6 +121,11 @@ packages:
       lodash: 4.17.21
       temp: 0.9.4
       word-wrap: 1.2.5
+    dev: false
+
+  /cz-git@1.8.0:
+    resolution: {integrity: sha512-XL5nXiqbW10YswQqWODrbwyWhydw3mLhP8OBrXyl8u4sIjTf/6mhGsizd6FA2VgPc4tZaNGguFoUyDj7vIBouw==}
+    engines: {node: '>=v12.20.0'}
     dev: false
 
   /dayjs@1.11.9:
