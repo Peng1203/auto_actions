@@ -11,9 +11,19 @@
   "license": "ISC",
   "dependencies": {
     "cron": "^2.4.3",
-    "dayjs": "^1.11.9"
+    "cz-customizable": "^7.0.0",
+    "dayjs": "^1.11.9",
+    "cz-git": "^1.8.0"
   },
   "devDependencies": {
     "@types/node": "^20.5.9"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-git"
+    },
+    "cz-customizable": {
+      "config": ".cz-config.js"
+    }
   }
 }
